@@ -1,5 +1,6 @@
 package com.gabrielmacedo.springmongo.services;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,6 +32,11 @@ public class PostService {
 			throw new ObjectNotFoundException("Object not found");
 		}
 		return post;
+	}
+	
+	public List<Post> fullSearch(String text, java.util.Date min, java.util.Date max) {
+		max = new Date(max.getTime() + 24 * 60 * 60 * 1000);
+		return postRepository.fullSearch(text, min, max);
 	}
 	
 }

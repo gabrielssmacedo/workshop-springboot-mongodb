@@ -1,13 +1,12 @@
 package com.gabrielmacedo.springmongo.domain;
 
 import java.io.Serializable;
-import java.time.Instant;
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.gabrielmacedo.springmongo.dto.AuthorDTO;
@@ -20,7 +19,7 @@ public class Post implements Serializable{
 	
 	@Id
 	private String id;
-	private Instant date;
+	private Date date;
 	private String title;
 	private String body;
 	
@@ -30,7 +29,7 @@ public class Post implements Serializable{
 	public Post() {
 	}
 
-	public Post(String id, Instant date, String title, String body, AuthorDTO author) {
+	public Post(String id, Date date, String title, String body, AuthorDTO author) {
 		this.id = id;
 		this.date = date;
 		this.title = title;
@@ -46,11 +45,11 @@ public class Post implements Serializable{
 		this.id = id;
 	}
 
-	public Instant getDate() {
+	public Date getDate() {
 		return date;
 	}
 
-	public void setDate(Instant date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 
