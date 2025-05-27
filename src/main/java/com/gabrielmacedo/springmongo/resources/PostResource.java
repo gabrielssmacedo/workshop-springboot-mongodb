@@ -15,7 +15,6 @@ import com.gabrielmacedo.springmongo.domain.User;
 import com.gabrielmacedo.springmongo.dto.UserDTO;
 import com.gabrielmacedo.springmongo.services.PostService;
 
-
 @RestController
 @RequestMapping(value = "/posts")
 public class PostResource {
