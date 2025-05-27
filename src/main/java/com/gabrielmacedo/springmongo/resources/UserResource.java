@@ -2,6 +2,7 @@ package com.gabrielmacedo.springmongo.resources;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.gabrielmacedo.springmongo.domain.Post;
 import com.gabrielmacedo.springmongo.domain.User;
 import com.gabrielmacedo.springmongo.dto.UserDTO;
 import com.gabrielmacedo.springmongo.services.UserService;
@@ -62,5 +64,11 @@ public class UserResource {
 		user.setId(id);
 		userService.update(user);
 		return ResponseEntity.noContent().build();
+	}
+	
+	@GetMapping(value = "/{id}/posts")
+	public ResponseEntity<Set<Post>> findPosts(@PathVariable String id){
+		User user = userService.findById(id);
+		return ResponseEntity.ok().body(user.getPosts());
 	}
 }
