@@ -1,9 +1,12 @@
 package com.gabrielmacedo.springmongo.domain;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "user")
@@ -15,6 +18,9 @@ public class User implements Serializable {
 	private String id;
 	private String name;
 	private String email;
+	
+	@DBRef(lazy = true)
+	private Set<Post> posts = new HashSet<>();
 	
 	public User() {
 	}
@@ -49,6 +55,10 @@ public class User implements Serializable {
 		this.email = email;
 	}
 
+	public Set<Post> getPosts() {
+		return posts;
+	}
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -65,5 +75,7 @@ public class User implements Serializable {
 		User other = (User) obj;
 		return Objects.equals(id, other.id);
 	}
+
+	
 	
 }

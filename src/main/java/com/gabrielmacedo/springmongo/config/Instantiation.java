@@ -1,8 +1,9 @@
 package com.gabrielmacedo.springmongo.config;
 
 import java.time.Instant;
-import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -38,6 +39,10 @@ public class Instantiation implements CommandLineRunner{
 		Post p2 = new Post(null, Instant.now(), "Cabelo", "Cortei o cabelo, gostarum?", new AuthorDTO(maria));
 		
 		postRepository.saveAll(Arrays.asList(p1, p2));
+		
+		maria.getPosts().add(p1);
+		maria.getPosts().add(p2);
+		userRepository.save(maria);
 	}
 
 }
